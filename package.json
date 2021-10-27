@@ -1,0 +1,16 @@
+{
+  "name": "backend_node",
+  "version": "0.1.0",
+  "description": "Un chat como telegram, pero mejor",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "chat",
+    "telegram",
+    "server"
+  ],
+  "author": "Ivan Rojo <ivanrojo07@gmail.com>",
+  "license": "MIT"
+}
