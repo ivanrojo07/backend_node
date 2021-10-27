@@ -12,5 +12,8 @@
     "server"
   ],
   "author": "Ivan Rojo <ivanrojo07@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
