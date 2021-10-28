@@ -24,10 +24,11 @@ router.post('/message', function (req, res) {
     console.log("body",req.body)
     console.log('query', req.query);
     if(req.query.error == 'ok'){
-        response.error(req, res, "Error Ocurrido", 401)
+        response.error(req, res, "Error Ocurrido", 500, "es una simulación de los errores.");
     }
-    // res.send('Mensaje '+req.body.message+' añadido');
-    response.success(req, res, 'Mensaje '+req.body.message+' añadido', 201)
+    else{
+        response.success(req, res, 'Mensaje '+req.body.message+' añadido', 201);
+    }
 });
 router.delete('/message', function (req, res) {
     console.log(req.query);
