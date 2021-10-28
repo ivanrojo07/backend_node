@@ -1,11 +1,27 @@
 const express = require('express');
 const PORT = 3000;
+// Router
+const router = express.Router();
 // Inicializar
 var app = express();
+app.use(express.json()) // for parsing application/json
+app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(router);
 
-app.use('/', function(req, res) {
-    res.send('Hola');
+router.get('/', function(req, res) {
+   res.send('hola desde get'); 
+})
+router.get('/message', function (req, res) {
+    res.send('Lista de mensajes');
 });
+router.post('/message', function (req, res) {
+    console.log("body",req.body)
+    console.log('query', req.query);
+    res.send('Mensaje '+req.body.message+' añadido');
+});
+// app.use('/', function(req, res) {
+//     res.send('Hola');
+// });
 
 app.listen(PORT);
 
