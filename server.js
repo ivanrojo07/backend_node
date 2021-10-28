@@ -23,6 +23,11 @@ router.post('/message', function (req, res) {
     console.log('query', req.query);
     res.send('Mensaje '+req.body.message+' añadido');
 });
+router.delete('/message', function (req, res) {
+    console.log(req.query);
+    console.log(req.body);
+    res.status(201).send({error:'', body:"Eliminado"});
+})
 // app.use('/', function(req, res) {
 //     res.send('Hola');
 // });
