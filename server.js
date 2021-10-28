@@ -9,9 +9,13 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 app.use(router);
 
 router.get('/', function(req, res) {
-   res.send('hola desde get'); 
+    res.send('hola desde get'); 
 })
 router.get('/message', function (req, res) {
+    console.log('headers',req.headers)
+    res.header({
+        "custom-header": "Nuestro valor personalizado",
+    })
     res.send('Lista de mensajes');
 });
 router.post('/message', function (req, res) {
