@@ -4,7 +4,8 @@ const response = require('../../network/response');
 const controller = require('./controller');
 
 router.get('/', function (req, res) {
-    controller.getMessages().then((messageList)=>{
+    const filterMessages = req.query.user || null;
+    controller.getMessages(filterMessages).then((messageList)=>{
         response.success(req, res, messageList, 200);
     })
     .catch((error)=>{
@@ -32,10 +33,19 @@ router.patch('/:id', function (req, res) {
             response.error(req, res, "Error interno", 500, error)
         })
 })
-router.delete('/', function (req, res) {
-    console.log(req.query);
-    console.log(req.body);
-    response.success(req, res, 'Mensaje eliminado', 200)
+router.delete('/:id', function (req, res) {
+   controller.deleteMessage(req.params.id)
+    .then( (data) =>{
+        console.log(data)
+        response.success(req, res, `Mensaje de ${data.user} eliminado`, 200 )
+    })
+    .catch( (error) =>{
+        console.log('[network Error]', error);
+        if(error === "Not Found"){
+            response.error(req, res, "Mensaje no encontrado", 404, error);
+        }
+        response.error(req, res, "Error interno", 500, error);
+    });
 
 })
 

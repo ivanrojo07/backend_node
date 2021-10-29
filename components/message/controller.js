@@ -12,16 +12,16 @@ function addMessage (user, message) {
             message: message,
             date: new Date()
         };
-        store.add(fullMessage)
+        store.add(fullMessage);
         resolve(fullMessage);
 
     })
 }
 
-function getMessages () {
+function getMessages (user) {
     return new Promise( (resolve, reject) => {
-        resolve(store.list());
-    })
+        resolve(store.list(user));
+    });
 }
 
 function updateMessage (id, message) {
@@ -30,9 +30,32 @@ function updateMessage (id, message) {
             reject('Invalid data');
         }
         else{
-            const result = await store.update(id, message)
+            const result = await store.update(id, message);
             resolve(result);
 
+        }
+    });
+}
+
+function deleteMessage (id) {
+    return new Promise(async (resolve, reject) => {
+        if(!id) {
+            reject('Invalid data');
+        }
+        else{
+            try{
+                const result = await store.delete(id);
+                if(result){
+                    resolve(result);
+                }
+                else{
+                    reject('Not Found');
+                }
+                
+            }
+            catch(error){
+                reject(error);
+            }
         }
     })
 }
@@ -41,4 +64,5 @@ module.exports = {
     addMessage,
     getMessages,
     updateMessage,
+    deleteMessage,
 }
