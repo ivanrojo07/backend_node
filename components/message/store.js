@@ -1,13 +1,5 @@
-const db = require('mongoose');
 const Model = require('./model');
 
-db.Promise = global.Promise;
-
-db.connect('mongodb+srv://ivanrojo07:w9lzpJiOfVJCeAiV@cluster0.qj00c.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
-{
-    useNewUrlParser: true
-})
-console.log('[db] Conectada con exito')
 function addMessage (message) {
     const myMessage = new Model(message);
     myMessage.save();

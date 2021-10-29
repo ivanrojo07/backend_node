@@ -1,9 +1,12 @@
 const express = require('express');
-const PORT = 3000;
-const response = require('./network/response')
+require('dotenv').config({ path: './.env' });
+const PORT = process.env.PORT || 3000;
+const URL_BD = process.env.MONGO_URI;
+const db = require('./db')
 // Router
-// const router = require('./components/message/network');
 const router = require('./network/routes');
+// db
+db(URL_BD);
 // Inicializar
 var app = express();
 app.use(express.json()); // for parsing application/json
