@@ -45,5 +45,3 @@ module.exports = {
     update: updateMessage,
     delete: deleteMessage,
 }
-// w9lzpJiOfVJCeAiV
-// mongodb+srv://ivanrojo07:<password>@cluster0.qj00c.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
