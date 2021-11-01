@@ -1,7 +1,12 @@
 const express = require('express');
+const multer = require('multer');
 const router = express.Router();
 const response = require('../../network/response');
 const controller = require('./controller');
+
+const upload = multer({
+    dest: 'public/files/',
+})
 
 router.get('/', function (req, res) {
     const filterMessages = req.query.user || null;
@@ -12,9 +17,10 @@ router.get('/', function (req, res) {
         response.error(req, res, "Invalid data", 500, "Server Error")
     })
 });
-router.post('/', function (req, res) {
+router.post('/', upload.single('file'),  function (req, res) {
     const body = req.body;
-    controller.addMessage(body.user, body.message).then((fullMessage)=>{
+    // console.log(req.file)
+    controller.addMessage(body.chat, body.user, body.message, req.file).then((fullMessage)=>{
         console.log('[success Network]', fullMessage);
         response.success(req, res, fullMessage, 201);
     }).catch(error=>{

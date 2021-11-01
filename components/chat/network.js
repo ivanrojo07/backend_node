@@ -3,8 +3,8 @@ const router = express.Router();
 const response = require('../../network/response');
 const controller = require('./controller');
 
-router.get('/', function(req, res) {
-    const filter = req.query.user || null;
+router.get('/:id', function(req, res) {
+    const filter = req.params.id || null;
     controller.getChats(filter)
             .then( (chatList) => {
                 response.success(req, res, chatList, 200);
